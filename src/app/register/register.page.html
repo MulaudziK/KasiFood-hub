@@ -1,12 +1,85 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>KasiFoodHub</ion-title>
-  <ion-buttons slot="start">
-    <ion-menu-button menu="main-menu"></ion-menu-button>
-  </ion-buttons>
+    <ion-title style="text-align: center;">Registration Page</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-title>Register</ion-title>
-</ion-content>
 
+<ion-content>
+  <form [formGroup]="registrationForm" (ngSubmit)="registerForm()">
+
+    <ion-item lines="full">
+      <ion-input formControlName="fname" autocapitalize inputmode="text"  placeholder="First Name" required></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorFeedback.fname">
+      <ng-container *ngIf="fname.hasError(error.type) && (fname.dirty || fname.touched)">
+        <small class="error-feedback">{{error.feedback}}</small>
+      </ng-container>
+    </div>
+
+    <ion-item lines="full">
+      <ion-input formControlName="lname" inputmode="text" placeholder="Last Name" required></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorFeedback.lname">
+      <ng-container *ngIf="lname.hasError(error.type) && (lname.dirty || lname.touched)">
+        <small class="error-feedback">{{error.feedback}}</small>
+      </ng-container>
+    </div>
+
+    <ion-item class="input-group" lines="full">
+      <ion-input formControlName="email" inputmode="email" placeholder="Email" required></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorFeedback.email">
+      <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+        <small class="error-feedback">{{error.feedback}}</small>
+      </ng-container>
+    </div>
+
+    <ion-item class="input-group" lines="full">
+      <ion-input formControlName="cellPhone" inputmode="tel" placeholder="Cellphone Number" required></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorFeedback.cellPhone">
+      <ng-container *ngIf="cellPhone.hasError(error.type) && (cellPhone.dirty || cellPhone.touched)">
+        <small class="error-feedback">{{error.feedback}}</small>
+      </ng-container>
+    </div>
+
+    <ion-item lines="full">
+      <ion-input formControlName="password" inputmode="password" 
+      placeholder="Password"  required></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorFeedback.password">
+      <ng-container  *ngIf="registrationForm.get('password').hasError(error.type) 
+        && (registrationForm.get('password').dirty || registrationForm.get('password').touched)">
+          {{ error.feedback }}
+      </ng-container>
+      </div>
+   
+    
+    <ion-item lines="full">
+      <ion-input formControlName="confirmPassword" inputmode="password"
+       placeholder="Confirm password"   required>
+      </ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorFeedback.confirmPassword">
+      <ng-container  *ngIf="registrationForm.get('confirmPassword').hasError(error.type) 
+        && (registrationForm.get('confirmPassword').dirty || registrationForm.get('confirmPassword').touched)">
+          {{ error.feedback }}
+      </ng-container>
+     
+      </div>
+    <br>
+
+    <ion-button [disabled]="!registrationForm.valid" type="submit" color="medium" expand="block">Sign Up</ion-button>
+      
+  </form>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title style="text-align: center;">
+        <small>
+          Already a Member? <a href="login">Sign In</a>
+        </small>
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

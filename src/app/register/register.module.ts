@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import {  Component, OnInit, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -11,10 +11,12 @@ import { RegisterPage } from './register.page';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     RegisterPageRoutingModule
   ],
   declarations: [RegisterPage]
 })
-export class RegisterPageModule {}
+export class RegisterPageModule {
+
+}
